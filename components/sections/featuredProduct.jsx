@@ -1,15 +1,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getProducts } from "@/app/action/products";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
 
+export const dynamic = "force-dynamic";
 
-const products = await getProducts()
-
-
-
+const products = await prisma.cart_item.findMany();
 
 export default function FeaturedProducts() {
 

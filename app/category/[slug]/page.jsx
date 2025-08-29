@@ -31,20 +31,23 @@ export default async function CategoryPage({ params }) {
             ) : (
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {category.cart_item.map((product) => (
-                        <Card key={product.id} className="rounded-2xl shadow-lg hover:scale-105 transition">
-                            <CardHeader>
-                                <img
-                                    src={product.urlImage || "https://via.placeholder.com/300x200"}
-                                    alt={product.name}
-                                    className="w-36 h-36 m-auto object-cover rounded-xl"
-                                />
-                            </CardHeader>
-                            <CardContent className="text-center">
-                                <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
-                                <CardDescription className="text-foreground mb-3">💵 {product.price} EGP</CardDescription>
-                                <Button className="w-full">🛒 أضف إلى السلة</Button>
-                            </CardContent>
-                        </Card>
+                        <Link key={product.id} href={`products/` + product.id}>
+
+                            <Card key={product.id} className="rounded-2xl shadow-lg hover:scale-105 transition">
+                                <CardHeader>
+                                    <img
+                                        src={product.urlImage || "https://via.placeholder.com/300x200"}
+                                        alt={product.name}
+                                        className="w-36 h-36 m-auto object-cover rounded-xl"
+                                    />
+                                </CardHeader>
+                                <CardContent className="text-center">
+                                    <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                                    <CardDescription className="text-foreground mb-3">💵 {product.price} EGP</CardDescription>
+                                    <Button className="w-full">🛒 أضف إلى السلة</Button>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             )}

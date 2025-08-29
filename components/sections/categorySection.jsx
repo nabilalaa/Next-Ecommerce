@@ -1,9 +1,9 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { getCategories } from "@/app/action/category";
 import Link from "next/link";
+export const dynamic = "force-dynamic";
+const categories = await prisma.cart_category.findMany();
 
 export default async function CategoriesSection() {
-    const categories = await getCategories();
     // console.log(categories)
 
     return (
