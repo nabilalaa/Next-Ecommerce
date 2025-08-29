@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
 
-// export const dynamic = "force-dynamic";
 
 const products = await prisma.cart_item.findMany();
 
