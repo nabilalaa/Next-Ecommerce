@@ -5,9 +5,10 @@ import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
 
 
-const products = await prisma.cart_item.findMany();
+export const dynamic = "force-dynamic";
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+    const products = await prisma.cart_item.findMany();
 
 
 

@@ -4,10 +4,9 @@ import Link from "next/link";
 
 
 export const dynamic = "force-dynamic";
-const categories = await prisma.cart_category.findMany();
 
 export default async function CategoriesSection() {
-    // console.log(categories)
+    const categories = await prisma.cart_category.findMany();
 
     return (
         <section className="py-12 bg-background">
