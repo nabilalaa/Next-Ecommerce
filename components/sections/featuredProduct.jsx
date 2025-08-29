@@ -5,7 +5,7 @@ import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
 
 
-export const dynamic = "force-dynamic";
+export const revalidate = 0; // بدل force-dynamic
 
 export default async function FeaturedProducts() {
     const products = await prisma.cart_item.findMany();
