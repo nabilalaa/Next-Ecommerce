@@ -6,6 +6,9 @@ import OfferBanner from "@/components/sections/offerBanner";
 import Newsletter from "@/components/sections/newsletter";
 import Footer from "@/components/sections/footer";
 
+
+export const revalidate = 0; // بدل force-dynamic
+
 export default async function Home() {
 
     return (
