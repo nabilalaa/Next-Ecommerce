@@ -17,7 +17,7 @@ export default function AddToCartButton({ product }) {
 
       cart[index] = { ...cart[index], quantity: cart[index].quantity + 1 }
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log(cart[index])
+      alert(`${product.quantity} تمت إضافته إلى السلة ✅`);
 
       // cart.push(;
     } else {

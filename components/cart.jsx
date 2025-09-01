@@ -50,76 +50,80 @@ export function Cart({ }) {
     }, [cart])
 
     return (
-        <div className="max-w-4xl mx-auto p-8">
-            <h1 className="text-2xl font-bold mb-6"> عربة التسوق 🛍️</h1>
+        cart.length === 0 ? <h1>لايوجد</h1> :
+            <div className="max-w-4xl mx-auto p-8">
+                <h1 className="text-2xl font-bold mb-6"> عربة التسوق 🛍️</h1>
 
-            <div className="flex flex-col gap-4">
-                {cart.length === 0 ? <h2>لا يوجد منتجات</h2> : cart.map((item, index) => (
-                    <div
-                        key={index}
-                        className="flex items-center justify-between border rounded-lg p-4 shadow-sm"
-                    >
-                        <div className="flex items-center gap-4">
-                            {/* <img
+                <div className="flex flex-col gap-4">
+                    {cart.length === 0 ? <h2>لا يوجد منتجات</h2> : cart.map((item, index) => (
+                        <div
+                            key={index}
+                            className="flex items-center justify-between border rounded-lg p-4 shadow-sm"
+                        >
+                            <div className="flex items-center gap-4">
+                                {/* <img
                                 src={item.urlImage ? "" : ''}
                                 alt={item.name}
                                 className="w-16 h-16 rounded-lg"
                             /> */}
 
-                        </div>
-                        <div className="flex items-center justify-between  md:justify-end">
-                            <div className="flex items-center">
-                                <button
-                                    onClick={() => increaseQuantity(item.id)}
-                                    type="button"
-                                    className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full   focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                                >
-                                    <PlusCircle />
-
-                                </button>
-                                <input
-                                    value={item.quantity}
-                                    readOnly
-                                    type="text"
-                                    id="counter-input-3"
-                                    data-input-counter
-                                    className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                                    placeholder=""
-                                    required
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => decreaseQuantity(item.id)}
-                                    className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full   focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                                >
-                                    <MinusCircle />
-
-
-                                </button>
                             </div>
-                            <div className="text-end md:order-4 md:w-32">
-                                <p className="text-base font-bold text-gray-900 dark:text-white">
-                                    {item.price * item.quantity} جنيه
-                                </p>
+                            <div className="flex items-center justify-between  md:justify-end">
+                                <div className="flex items-center">
+                                    <button
+                                        onClick={() => increaseQuantity(item.id)}
+                                        type="button"
+                                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full   focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                    >
+                                        <PlusCircle />
+
+                                    </button>
+                                    <input
+                                        value={item.quantity}
+                                        readOnly
+                                        type="text"
+                                        id="counter-input-3"
+                                        data-input-counter
+                                        className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
+                                        placeholder=""
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => decreaseQuantity(item.id)}
+                                        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full   focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                    >
+                                        <MinusCircle />
+
+
+                                    </button>
+                                </div>
+                                <div className="text-end md:order-4 md:w-32">
+                                    <p className="text-base font-bold text-gray-900 dark:text-white">
+                                        {item.price * item.quantity} جنيه
+                                    </p>
+                                </div>
                             </div>
+                            <Button onClick={() => {
+                                deleteItem(item.id)
+                            }} variant="destructive">🗑️ إزالة</Button>
                         </div>
-                        <Button onClick={() => {
-                            deleteItem(item.id)
-                        }} variant="destructive">🗑️ إزالة</Button>
-                    </div>
-                ))}
+                    ))}
+
+                </div>
+
+                {cart.length === 0 ? <Link className="underline" href={"/"}>الصفحة الرئيسة</Link > : <div className="flex justify-between items-center mt-8 border-t pt-4">
+                    <span className="text-xl font-bold">
+                        الإجمالي: {total} جنيه 💰
+                    </span>
+                    <Link href={"/checkout"} >
+                        <Button className="bg-primary hover:bg-accent text-primary-foreground cursor-pointer">
+                            إتمام الشراء ✅
+                        </Button>
+                    </Link >
+
+                </div>}
 
             </div>
-
-            {cart.length === 0 ? <Link className="underline" href={"/"}>الصفحة الرئيسة</Link > : <div className="flex justify-between items-center mt-8 border-t pt-4">
-                <span className="text-xl font-bold">
-                    الإجمالي: {total} جنيه 💰
-                </span>
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                    إتمام الشراء ✅
-                </Button>
-            </div>}
-
-        </div>
     )
 }

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 
 export default async function ProductPage({ params }) {
-    const id = await params.id
+    const { id } = await params
 
     // استدعاء المنتج من قاعدة البيانات
     const product = await prisma.cart_item.findUnique({

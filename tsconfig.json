@@ -35,7 +35,7 @@
     "app/page.jsx",
     "next-env.d.js",
     ".next/types/**/*.ts"
-, "app/lib/prisma.ts", "app/action/category.ts", "components/categorySection.tsx"  ],
+, "app/lib/prisma.ts", "app/action/category.ts", "components/categorySection.tsx", "app/action/createorder.ts"  ],
   "exclude": [
     "node_modules"
   ]

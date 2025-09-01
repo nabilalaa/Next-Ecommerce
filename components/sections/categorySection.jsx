@@ -3,7 +3,6 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 
 
-export const revalidate = 0; // بدل force-dynamic
 
 export default async function CategoriesSection() {
     const categories = await prisma.cart_category.findMany();

@@ -166,8 +166,19 @@ model cart_item {
 
 model cart_category {
   id        BigInt      @id @default(autoincrement())
-  name      String      @unique @db.VarChar(50)
+  name      String      @db.VarChar(50)
   image     String      @db.VarChar(100)
   image_Url String?     @db.VarChar(200)
   cart_item cart_item[]
+}
+
+model cart_order {
+  id       BigInt  @id @default(autoincrement())
+  name     String  @db.VarChar(50)
+  address  String? @db.VarChar
+  city     String? @db.VarChar
+  phone    Int?
+  email    String? @db.VarChar(254)
+  notes    String?
+  products String?
 }

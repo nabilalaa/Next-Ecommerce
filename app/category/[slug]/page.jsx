@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { prisma } from "@/app/lib/prisma"
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 export default async function CategoryPage({ params }) {
-    const { slug } = await params
+    const { slug } = params
 
     const category = await prisma.cart_category.findUnique({
         where: {
@@ -11,6 +12,8 @@ export default async function CategoryPage({ params }) {
         },
         include: { cart_item: true },
     })
+
+
 
 
 
@@ -31,12 +34,12 @@ export default async function CategoryPage({ params }) {
             ) : (
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {category.cart_item.map((product) => (
-                        <Link key={product.id} href={`products/` + product.id}>
+                        <Link key={product.id} href={`/products/` + product.id}>
 
                             <Card key={product.id} className="rounded-2xl shadow-lg hover:scale-105 transition">
                                 <CardHeader>
                                     <img
-                                        src={product.urlImage || "https://via.placeholder.com/300x200"}
+                                        src={product.urlImage}
                                         alt={product.name}
                                         className="w-36 h-36 m-auto object-cover rounded-xl"
                                     />
