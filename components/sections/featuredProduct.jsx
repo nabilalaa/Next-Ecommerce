@@ -3,11 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { prisma } from "@/app/lib/prisma";
+import Image from "next/image";
 
 
 
 export default async function FeaturedProducts() {
-    const products = await prisma.cart_item.findMany();
+    const products = await prisma.store_item.findMany({
+        take: 4
+    });
 
 
 
@@ -21,19 +24,26 @@ export default async function FeaturedProducts() {
 
                         <Card className="rounded-2xl shadow-lg">
                             <CardHeader className="text-center">
-                                <img
-                                    src={
-                                        product.image ? `https://res.cloudinary.com/dnru0whph/image/upload/v1/` +
-                                            product.image : product.urlImage
-                                    }
-                                    alt={product.name}
-                                    className="w-36 h-36  object-cover rounded-xl m-auto"
-                                />
+                                <div className=" h-40 relative">
+                                    <Image
+
+                                        src={
+                                            product.image ?
+                                                "https://res.cloudinary.com/dnru0whph/image/upload/" + product.image : product.urlImage ? product.urlImage : "/heroImage.png"
+
+
+                                        }
+                                        alt=""
+                                        fill
+
+                                        className="object-contain"
+                                    />
+                                </div>
+
                             </CardHeader>
                             <CardContent className="text-center">
                                 <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
                                 <CardDescription className="text-foreground mb-3">💵 {product.price} EGP</CardDescription>
-                                <Button className="w-full">اضافة الى السلة 🛒</Button>
                             </CardContent>
                         </Card>
                     </Link>

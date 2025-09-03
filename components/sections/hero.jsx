@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Hero() {
     return (
         <section className="relative bg-gradient-to-r from-primary to-secondary   text-foreground py-20">
@@ -17,10 +19,12 @@ export default function Hero() {
 
                 {/* صورة توضيحية */}
                 <div className="flex-1 mt-10 md:mt-0">
-                    <img
-                        src="https://via.placeholder.com/400x300"
+                    <Image
+                        src="/heroImage.png"
                         alt="Hero Banner"
-                        className="rounded-2xl shadow-lg"
+                        width={500}
+                        height={500}
+                        className="rounded-2xl object-cover"
                     />
                 </div>
             </div>

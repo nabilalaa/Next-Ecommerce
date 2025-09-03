@@ -27,10 +27,10 @@ export default function Footer() {
                 <div>
                     <h3 className="text-lg font-semibold text-white mb-3">التصنيفات</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><a href="#" className="hover:text-white">👕 أزياء</a></li>
-                        <li><a href="#" className="hover:text-white">💻 إلكترونيات</a></li>
-                        <li><a href="#" className="hover:text-white">🏠 منزل</a></li>
-                        <li><a href="#" className="hover:text-white">🎮 ألعاب</a></li>
+                        <li><a href="#" className="hover:text-white">👕 كروت شاشة</a></li>
+                        <li><a href="#" className="hover:text-white">💻 بروسيسور</a></li>
+                        <li><a href="#" className="hover:text-white">🏠 </a></li>
+                        <li><a href="#" className="hover:text-white">🎮 </a></li>
                     </ul>
                 </div>
 

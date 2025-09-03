@@ -2,14 +2,15 @@
 import { prisma } from "@/app/lib/prisma";
 import AddToCartButton from "@/components/sections/addToCart";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 
 export default async function ProductPage({ params }) {
     const { id } = await params
 
     // استدعاء المنتج من قاعدة البيانات
-    const product = await prisma.cart_item.findUnique({
-        where: { id: BigInt(id) },
+    const product = await prisma.store_item.findUnique({
+        where: { id: Number(id) },
     });
 
     if (!product) {
@@ -33,11 +34,21 @@ export default async function ProductPage({ params }) {
         <div className="max-w-5xl mx-auto p-8 grid md:grid-cols-2 gap-8">
             {/* صورة المنتج */}
             <div>
-                <img
-                    src={product.urlImage || "/placeholder.png"}
-                    alt={product.name}
-                    className="rounded-2xl shadow-lg w-full"
-                />
+                <div className=" h-full relative">
+                    <Image
+
+                        src={
+                            product.image ?
+                                "https://res.cloudinary.com/dnru0whph/image/upload/" + product.image : product.urlImage ? product.urlImage : "/heroImage.png"
+
+
+                        }
+                        alt=""
+                        fill
+
+                        className="object-contain"
+                    />
+                </div>
             </div>
 
             {/* تفاصيل المنتج */}

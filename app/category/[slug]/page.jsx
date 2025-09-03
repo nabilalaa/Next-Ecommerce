@@ -2,15 +2,16 @@ import Link from "next/link";
 import { prisma } from "@/app/lib/prisma"
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
 
 export default async function CategoryPage({ params }) {
-    const { slug } = params
+    const { slug } = await params
 
-    const category = await prisma.cart_category.findUnique({
+    const category = await prisma.store_category.findUnique({
         where: {
             id: BigInt(slug)
         },
-        include: { cart_item: true },
+        include: { store_item: true },
     })
 
 
@@ -29,20 +30,30 @@ export default async function CategoryPage({ params }) {
             </h1>
 
             {/* المنتجات */}
-            {category.cart_item.length === 0 ? (
+            {category.store_item.length === 0 ? (
                 <p className="text-center text-gray-500">🚫 لا توجد منتجات في هذا القسم</p>
             ) : (
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    {category.cart_item.map((product) => (
+                    {category.store_item.map((product) => (
                         <Link key={product.id} href={`/products/` + product.id}>
 
                             <Card key={product.id} className="rounded-2xl shadow-lg hover:scale-105 transition">
                                 <CardHeader>
-                                    <img
-                                        src={product.urlImage}
-                                        alt={product.name}
-                                        className="w-36 h-36 m-auto object-cover rounded-xl"
-                                    />
+                                    <div className="h-36 relative">
+                                        <Image
+
+                                            src={
+                                                product.image ?
+                                                    "https://res.cloudinary.com/dnru0whph/image/upload/" + product.image : product.urlImage ? product.urlImage : "/heroImage.png"
+
+
+                                            }
+                                            alt=""
+                                            fill
+
+                                            className="object-contain"
+                                        />
+                                    </div>
                                 </CardHeader>
                                 <CardContent className="text-center">
                                     <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
